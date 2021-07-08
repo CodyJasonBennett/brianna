@@ -1,13 +1,13 @@
 {
   "name": "brianna",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://briannacli.com",
   "description": "Zero-dependency package manager.",
   "repository": "https://github.com/CodyJasonBennett/brianna",
   "author": "Cody Bennett <hi@codyb.co>",
   "license": "MIT",
   "bin": {
-    "brianna": "brianna.js"
+    "brianna": "lib/brianna.js"
   },
   "devDependencies": {
     "eslint": "^7.29.0",
