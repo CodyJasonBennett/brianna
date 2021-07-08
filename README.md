@@ -17,5 +17,5 @@ yarn global add brianna
 Check installation with:
 
 ```bash
-brianna --version
+brianna version
 ```
