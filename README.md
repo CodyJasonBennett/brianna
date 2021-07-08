@@ -7,10 +7,10 @@ Zero-dependency package manager.
 Make sure you have nodejs installed.
 
 ```bash
-// npm
+# npm
 npm install -g brianna
 
-// yarn
+# yarn
 yarn global add brianna
 ```
 

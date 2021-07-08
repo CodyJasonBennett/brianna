@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { readFileSync } = require('fs');
 const { join } = require('path');
 
@@ -15,11 +16,11 @@ try {
   const [command] = args;
   switch (command) {
     // @TODO installation logic
-    case 'install':
-    case undefined: {
+    case 'install': {
       console.info(yellow('NOT IMPLEMENTED'));
       break;
     }
+    case undefined:
     case 'help':
     case '-h':
     case '--help': {

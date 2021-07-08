@@ -1,6 +1,6 @@
 {
   "name": "brianna",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://briannacli.com",
   "description": "Zero-dependency package manager.",
   "repository": "https://github.com/CodyJasonBennett/brianna",
@@ -9,18 +9,12 @@
   "bin": {
     "brianna": "brianna.js"
   },
-  "files": [
-    "brianna.js"
-  ],
   "devDependencies": {
     "eslint": "^7.29.0",
     "prettier": "^2.3.2"
   },
   "scripts": {
     "lint": "eslint . && prettier . --check",
-    "lint-fix": "eslint . --fix && prettier . --write src"
-  },
-  "engines": {
-    "node": ">14"
+    "lint-fix": "eslint . --fix && prettier . --write ."
   }
 }
