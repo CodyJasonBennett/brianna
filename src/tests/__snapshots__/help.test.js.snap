@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`commands/help displays command info 1`] = `
+"\`Usage: [1m[37mbrianna install [flags][39m[22m\`
+
+Installs all dependencies for a project.
+
+Options:
+  -P, --production  install production dependencies
+  -D, --save-dev    install package to your \`devDependencies\`
+
+Visit [1m[37mhttps://briannacli.com/docs/install[39m[22m to learn more about this command."
+`;
+
+exports[`commands/help displays info with no arguments 1`] = `
+"Usage: \`[1m[37mbrianna <command> [flags][39m[22m\`
+
+Commands:
+  -h, help     Displays Brianna's commands and options.
+  -i, install  Installs all dependencies for a project.
+  -v, version  Get Brianna's current version.
+
+Run \`[1m[37mbrianna help <command>[39m[22m\` for more information on specific commands.
+Visit [1m[37mhttps://briannacli.com[39m[22m to learn more about Brianna."
+`;

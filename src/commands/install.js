@@ -1,4 +1,4 @@
-const { yellow } = require('../utils/colors');
+import colors from 'utils/colors';
 
 const install = {
   aliases: ['-i', 'install'],
@@ -13,7 +13,7 @@ const install = {
       description: 'install package to your `devDependencies`',
     },
   ],
-  run: () => void console.info(yellow('NOT IMPLEMENTED')),
+  run: () => void console.info(colors.yellow('NOT IMPLEMENTED')),
 };
 
-module.exports = install;
+export default install;

@@ -1,5 +1,5 @@
-const { readFileSync } = require('fs');
-const { join } = require('path');
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 const version = {
   aliases: ['-v', 'version'],
@@ -12,4 +12,4 @@ const version = {
   },
 };
 
-module.exports = version;
+export default version;

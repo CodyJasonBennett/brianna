@@ -1,20 +1,38 @@
 {
   "name": "brianna",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "homepage": "https://briannacli.com",
   "description": "Zero-dependency package manager.",
   "repository": "https://github.com/CodyJasonBennett/brianna",
   "author": "Cody Bennett <hi@codyb.co>",
   "license": "MIT",
   "bin": {
-    "brianna": "lib/brianna.js"
+    "brianna": "build/brianna.js"
   },
+  "files": [
+    "build"
+  ],
   "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.29.0",
-    "prettier": "^2.3.2"
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2"
   },
   "scripts": {
-    "lint": "eslint . && prettier . --check",
-    "lint-fix": "eslint . --fix && prettier . --write ."
+    "dev": "babel-node src/brianna",
+    "build": "rimraf build && babel src -d build --ignore \"src/**/*.test.js\"",
+    "test": "jest src --testTimeout=30000",
+    "test-watch": "jest --watchAll --verbose --testTimeout=30000",
+    "lint": "eslint src && prettier src --check",
+    "lint-fix": "eslint src --fix && prettier src --write"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

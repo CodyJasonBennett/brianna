@@ -1,7 +1,7 @@
-const { readdirSync } = require('fs');
-const { join } = require('path');
-const { bold, white } = require('../utils/colors');
-const { createTable } = require('../utils/table');
+import { readdirSync } from 'fs';
+import { join } from 'path';
+import { createTable } from 'utils/table';
+import colors from 'utils/colors';
 
 const COMMANDS_DIR = join(__dirname, '../commands');
 
@@ -14,7 +14,7 @@ const help = {
       description: 'Name of command to display additional info.',
     },
   ],
-  run: args => {
+  run: (...args) => {
     const [query] = args.slice(1);
 
     if (query) {
@@ -23,33 +23,35 @@ const help = {
         .find(name => name === query);
       if (!command) throw new Error(`Command "${query}" not found.`);
 
-      const { description, flags } = require(join(COMMANDS_DIR, command));
+      const { description, flags } = require(join(COMMANDS_DIR, command)).default;
 
-      const usage = `\`Usage: ${bold(
-        white(`brianna ${command}${flags ? ' [flags]' : ''}`)
+      const usage = `\`Usage: ${colors.bold(
+        colors.white(`brianna ${command}${flags ? ' [flags]' : ''}`)
       )}\``;
 
       const options = flags ? `\n\n${createTable(flags, 'Options:')}` : '';
 
-      const info = `Visit ${bold(
-        white(`https://briannacli.com/docs/${query}`)
+      const info = `Visit ${colors.bold(
+        colors.white(`https://briannacli.com/docs/${query}`)
       )} to learn more about this command.`;
 
       console.info(`${usage}\n\n${description}${options}\n\n${info}`);
     } else {
-      const usage = `Usage: \`${bold(white('brianna <command> [flags]'))}\``;
+      const usage = `Usage: \`${colors.bold(
+        colors.white('brianna <command> [flags]')
+      )}\``;
 
       const commands = createTable(
-        readdirSync(COMMANDS_DIR).map(name => require(join(COMMANDS_DIR, name))),
+        readdirSync(COMMANDS_DIR).map(name => require(join(COMMANDS_DIR, name)).default),
         'Commands:'
       );
 
-      const instructions = `Run \`${bold(
-        white('brianna help <command>')
+      const instructions = `Run \`${colors.bold(
+        colors.white('brianna help <command>')
       )}\` for more information on specific commands.`;
 
-      const info = `Visit ${bold(
-        white('https://briannacli.com')
+      const info = `Visit ${colors.bold(
+        colors.white('https://briannacli.com')
       )} to learn more about Brianna.`;
 
       console.info(`${usage}\n\n${commands}\n\n${instructions}\n${info}`);
@@ -57,4 +59,4 @@ const help = {
   },
 };
 
-module.exports = help;
+export default help;
