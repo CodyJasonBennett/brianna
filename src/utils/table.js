@@ -3,7 +3,10 @@
  */
 export const getPadding = (items, key, offset = 2) => {
   const [tableLength] = items
-    .map(item => (key ? item[key] : item).join(', ').length)
+    .map(item => {
+      const target = key ? item[key] : item;
+      return (target.join?.(', ') || target).length;
+    })
     .sort((a, b) => b - a);
   const tablePadding = tableLength + offset;
 
@@ -14,18 +17,26 @@ export const getPadding = (items, key, offset = 2) => {
  * Generates spaces needed to fill padding.
  */
 export const getSpaces = (items, padding) =>
-  ' '.repeat(padding - items.join(', ').length);
+  ' '.repeat(padding - (items.join?.(', ') || items).length);
 
 /**
- * Formats a table from core items.
+ * Formats a table from items.
  */
-export const createTable = (items, header = '') => {
-  const padding = getPadding(items, 'aliases');
+export const createTable = (items, ...keys) => {
+  const table = items.reduce((acc, item) => {
+    acc += '\n  ';
 
-  const table = items.reduce((acc, { aliases, description }) => {
-    acc += `\n  ${aliases.join(', ')}${getSpaces(aliases, padding)}${description}`;
+    Object.entries(item)
+      .filter(([key]) => (keys?.length ? keys.includes(key) : key))
+      .forEach(([key, value]) => {
+        const padding = getPadding(items, key);
+        const spaces = getSpaces(value, padding);
+
+        acc += `${value.join?.(', ') || value}${spaces}`;
+      });
+
     return acc;
-  }, header);
+  }, '');
 
   return table;
 };

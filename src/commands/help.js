@@ -29,7 +29,9 @@ const help = {
         colors.white(`brianna ${command}${flags ? ' [flags]' : ''}`)
       )}\``;
 
-      const options = flags ? `\n\n${createTable(flags, 'Options:')}` : '';
+      const options = flags
+        ? `\n\nOptions:${createTable(flags, 'aliases', 'description')}`
+        : '';
 
       const info = `Visit ${colors.bold(
         colors.white(`https://briannacli.com/docs/${query}`)
@@ -43,7 +45,8 @@ const help = {
 
       const commands = createTable(
         readdirSync(COMMANDS_DIR).map(name => require(join(COMMANDS_DIR, name)).default),
-        'Commands:'
+        'aliases',
+        'description'
       );
 
       const instructions = `Run \`${colors.bold(
@@ -54,7 +57,7 @@ const help = {
         colors.white('https://briannacli.com')
       )} to learn more about Brianna.`;
 
-      console.info(`${usage}\n\n${commands}\n\n${instructions}\n${info}`);
+      console.info(`${usage}\n\nCommands:${commands}\n\n${instructions}\n${info}`);
     }
   },
 };
