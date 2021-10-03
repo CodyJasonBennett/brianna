@@ -15,7 +15,7 @@ try {
   const handler = commands.find(({ aliases }) => aliases.includes(command));
   if (!handler) throw new Error(`Command "${command}" not found.`);
 
-  handler.run(...args);
+  handler.run(...args.slice(command ? 1 : 0));
 } catch (error) {
   console.info(
     `${colors.red('error')} ${error.stack}\n${colors.blue('info')} Use ${colors.bold(

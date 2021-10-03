@@ -15,7 +15,7 @@ const help = {
     },
   ],
   run: (...args) => {
-    const [query] = args.slice(1);
+    const [query] = args;
 
     if (query) {
       const command = readdirSync(COMMANDS_DIR)

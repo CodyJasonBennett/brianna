@@ -24,6 +24,9 @@
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2"
   },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
   "scripts": {
     "dev": "babel-node src/brianna",
     "build": "rimraf build && babel src -d build --ignore \"src/**/*.test.js\"",
